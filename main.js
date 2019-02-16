@@ -106,7 +106,7 @@ var vm = new Vue({
         down : function() {
             link=this.downlink;
             axios.get(link,{
-                onUploadProgress: function(progressEvent) {
+                onDownloadProgress: function(progressEvent) {
                     this.percent = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
                   }
             });
