@@ -24,7 +24,12 @@
     from {opacity: 1;}
     to {opacity: 0.75;}
   }
-
+@keyframes loading {
+    0% {background: #5cb85c;transform: rotate(0deg);}
+    33% {background: #f0ad4e;}
+    66% {background: #d9534f;}
+    100% {background: #5bc0de;transform: rotate(180deg)}
+}
 /* covertitle Component Styles */
 #covertitle {
     position: relative;

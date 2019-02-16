@@ -99,7 +99,7 @@ var vm = new Vue({
         title: "Tinkerhub@Campus",
         image: "coverBack.jpg",
         chapters: 5,
-        percent: 50,
+        percent: 100,
         downlink: "/",
     },
     methods : {
@@ -113,7 +113,9 @@ var vm = new Vue({
         }
     },
     mounted : function(){
+        setTimeout(()=>{
         document.getElementById("fullscreen").style.display="none";
+        },2000);
     }
 });
 var rellax = new Rellax('.rellax');
