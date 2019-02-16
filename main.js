@@ -100,7 +100,7 @@ var vm = new Vue({
         image: "coverBack.jpg",
         chapters: 5,
         percent: 50,
-        downlink: "https://github.com/axios/axios",
+        downlink: "/",
     },
     methods : {
         down : function() {
