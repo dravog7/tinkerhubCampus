@@ -30,13 +30,13 @@
             from {transform: rotateY(0deg);}
             to {transform: rotateY(180deg);}
         }
-        @keyframes r3c1{
-            from {flex:8;margin-right:16px;}
-            to {flex:4;margin-right:1px;}
-        }
         @keyframes r3c3{
-            from {flex:4;margin-left:1px;}
-            to {flex:8;margin-left:16px;}
+            from {flex:8;margin-left:16px;}
+            to {flex:4;margin-left:1px;}
+        }
+        @keyframes r3c1{
+            from {flex:4;margin-right:1px;}
+            to {flex:8;margin-right:16px;}
         }
     </style>
 </head>
@@ -63,7 +63,7 @@
             <div style="
             background: rgb(238, 23, 0);
             flex:8;
-            animation: r3c1 0.5s linear 0s infinite alternate;
+            animation: r3c1 1s linear 0s infinite alternate;
             " class="box"></div>
             <div style="
             background: rgb(149,191,21);
@@ -73,7 +73,7 @@
             <div style="
             background: rgb(32, 91, 103);
             flex:4;
-            animation: r3c3 0.5s linear 0s infinite alternate;
+            animation: r3c3 1s linear 0s infinite alternate;
             " class="box"></div>
         </div>
     </div>
