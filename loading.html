@@ -7,37 +7,36 @@
     <meta name="viewport" content="width=101,height=101, initial-scale=1">
     <style>
         div.box {
-            height: 30px;
-            min-width: 20px;
-            max-width: 100px;
-            border-radius: 15px;
-            margin: 1px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 16px;
         }
         div.row {
             display: flex;
-            max-width: 100px;
-            min-height: 30px;
-            border-radius: 15px;
+            max-width: 150px;
+            min-height: 50px;
+            border-radius: 5px;
+            margin-bottom: 5px;
         }
         @keyframes r1c1{
-            from {width:70px;}
-            to {width:30px;}
+            from {flex:9;}
+            to {flex:3;}
         }
         @keyframes r1c2{
-            from {width:30px;}
-            to {width:70px;}
+            from {flex: 3;}
+            to {flex:9;}
         }
         @keyframes r2{
-            from {width:100px;}
+            from {width:134px;}
             to {width:1px;}
         }
         @keyframes r3c1{
-            from {width:40px;}
-            to {width:25px;}
+            from {flex:8;}
+            to {flex:4;}
         }
         @keyframes r3c3{
-            from {width:25px;}
-            to {width:40px;}
+            from {flex:4;}
+            to {flex:8;}
         }
     </style>
 </head>
@@ -45,35 +44,35 @@
     <div>
         <div class="row">
             <div style="
-            background: rgb(121,204,211);
-            width:70px;
+            background: rgb(5,191,206);
+            flex:9;
             animation: r1c1 1s linear 0s infinite alternate;
             " class="box"></div>
             <div style="
-            background: rgb(134, 182, 225);
-            width:30px;
+            background: rgb(0, 96, 255);
+            flex:3;
             animation: r1c2 1s linear 0s infinite alternate;
             " class="box"></div>
         </div>
         <div class="row" style="
-        background: rgb(244,185,58);
-        flex:1;
+        background: rgb(255,205,16);
+        margin-right:8px;
         animation: r2 1s linear 0s infinite alternate;
         ">
         </div>
         <div class="row">
             <div style="
-            background: rgb(225, 90, 77);
-            width:40px;
+            background: rgb(238, 23, 0);
+            flex:8;
             animation: r3c1 1s linear 0s infinite alternate;
             " class="box"></div>
             <div style="
-            background: rgb(151,208,163);
-            width:35px;
+            background: rgb(149,191,21);
+            flex:4;
             " class="box"></div>
             <div style="
-            background: rgb(175, 150, 135);
-            width:25px;
+            background: rgb(32, 91, 103);
+            flex:4;
             animation: r3c3 1s linear 0s infinite alternate;
             " class="box"></div>
         </div>
