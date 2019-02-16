@@ -111,6 +111,9 @@ var vm = new Vue({
                   }
             });
         }
+    },
+    mounted : function(){
+        document.getElementById("fullscreen").style.display="none";
     }
 });
 var rellax = new Rellax('.rellax');
