@@ -1,0 +1,53 @@
+* {
+    font-family: 'Josefin Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+#navigator {
+    background: #1852be;
+    z-index:100;
+    opacity: 0.75;
+    animation: fadeout 0.5s ease;
+}
+
+#navigator:hover {
+    opacity: 1;
+    animation: fadein 0.5s ease;
+}
+
+@keyframes fadein {
+    from {opacity: 0.75;}
+    to {opacity: 1;}
+  }
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0.75;}
+  }
+
+/* covertitle Component Styles */
+#covertitle {
+    position: relative;
+    max-height: 100%;
+    color: white;
+    background-repeat: round;
+    margin: 0px;
+    padding: 0px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#covertitle h1 {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    z-index: 10;
+    font-size: 10vw;
+    color: white;
+}
+
+#covertitle img {
+    width: 100%;
+    z-index: -1;
+}
+/* --------------------------------*/
