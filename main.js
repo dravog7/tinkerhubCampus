@@ -144,6 +144,10 @@ mainV = asyncComponentFactory( async function(){
             if(iframes[i].src=="")
             iframes[i].src=iframes[i].dataset["src"];
         }
+        iframes[iframes.length-1].onload=function(){
+            document.getElementById("fullscreen").style.display="none";
+        }
+
     }
     }
 });
@@ -185,7 +189,4 @@ var vm = new Vue({
         chapters: 5,
         percent: 100,
     },
-    mounted : function(){
-        document.getElementById("fullscreen").style.display="none";
-    }
 });
