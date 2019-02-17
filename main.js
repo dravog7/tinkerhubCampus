@@ -87,6 +87,7 @@ loader = {
         this.percent=this.percent+0.0001;
     }
 };
+
 LoadingComponent = {
     //place holder component for activating loading gif
     template:"<h1>Loading</h1>",
@@ -97,7 +98,8 @@ LoadingComponent = {
         document.getElementById("fullscreen").style.display="none";
     }
 };
-// The index page
+
+
 function asyncComponentFactory(p){
     return p;
 //     return {
@@ -113,6 +115,7 @@ function asyncComponentFactory(p){
 //         timeout: 3000
 //     }
 };
+// The index page
 mainV = asyncComponentFactory( async function(){
     a=await axios.get("./main.html");
     return {
