@@ -88,37 +88,36 @@ loader = {
     }
 };
 //--------------------------
-var vm = new Vue({
-    el : "#container",
-    components : {
-        covertitle,
-        badge,
-        loader,
-    },
-    data : {
-        title: "Tinkerhub@Campus",
-        image: "coverBack.jpg",
-        chapters: 5,
-        percent: 100,
-        downlink: "/",
-    },
-    methods : {
-        down : function() {
-            link=this.downlink;
-            axios.get(link,{
-                onDownloadProgress: function(progressEvent) {
-                    this.percent = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-                  }
-            });
-        }
-    },
-    mounted : function(){
-        document.getElementById("fullscreen").style.display="none";
-    }
-});
-var rellax = new Rellax('.rellax');
-
 window.onload=function(e){
+    var vm = new Vue({
+        el : "#container",
+        components : {
+            covertitle,
+            badge,
+            loader,
+        },
+        data : {
+            title: "Tinkerhub@Campus",
+            image: "coverBack.jpg",
+            chapters: 5,
+            percent: 100,
+            downlink: "/",
+        },
+        methods : {
+            down : function() {
+                link=this.downlink;
+                axios.get(link,{
+                    onDownloadProgress: function(progressEvent) {
+                        this.percent = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                      }
+                });
+            }
+        },
+        mounted : function(){
+            document.getElementById("fullscreen").style.display="none";
+        }
+    });
+    var rellax = new Rellax('.rellax');
     iframes=document.getElementsByClassName('embed-responsive-item');
     for(i=0;i<iframes.length;i++)
     {
