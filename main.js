@@ -117,3 +117,11 @@ var vm = new Vue({
     }
 });
 var rellax = new Rellax('.rellax');
+
+window.onload=function(e){
+    iframes=document.getElementsByClassName('embed-responsive-item');
+    for(i=0;i<iframes.length;i++)
+    {
+        iframes[i].src=iframes[i].dataset["src"];
+    }
+}
