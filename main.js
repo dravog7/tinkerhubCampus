@@ -2,7 +2,7 @@
 // NOTE: always use small letters only
 covertitle= {
     template:`
-    <div id="covertitle">
+    <div class="covertitle">
         <img class="rellax" :src="image">
         <h1 class="rellax" data-rellax-speed="7" >{{title}}</h1>
     </div>
@@ -13,19 +13,19 @@ covertitle= {
 badge= {
     // Uses shields.io api
     // template: `
-    // <img :src="address"/>
+    // <img :to="to" :src="address"/>
     // `,
 
     //using bootstrap
     template : `
         <div class="text-center" style="margin: 2px;">
-            <b-button :variant="color">
+            <b-button :to="to" :variant="color">
             {{label}}
                 <b-badge pill variant="light">{{status}}</b-badge>
             </b-button>
         </div>
     `, 
-    props: ["label","status","color"],
+    props: ["label","status","color","to"],
     computed : {
         address : function () {
             let base="https://img.shields.io/badge/";
@@ -87,40 +87,102 @@ loader = {
         this.percent=this.percent+0.0001;
     }
 };
+LoadingComponent = {
+    //place holder component for activating loading gif
+    template:"<h1>Loading</h1>",
+    beforeCreate:function(){
+        document.getElementById("fullscreen").style.display="block";
+    },
+    beforeDestroy:function(){
+        document.getElementById("fullscreen").style.display="none";
+    }
+};
+// The index page
+function asyncComponentFactory(p){
+    return p;
+//     return {
+//         component: p,
+//   // A component to use while the async component is loading
+//         loading: LoadingComponent,
+//   // A component to use if the load fails
+//         // error: ErrorComponent,
+//   // Delay before showing the loading component. Default: 200ms.
+//         delay: 200,
+//   // The error component will be displayed if a timeout is
+//   // provided and exceeded. Default: Infinity.
+//         timeout: 3000
+//     }
+};
+mainV = asyncComponentFactory( async function(){
+    a=await axios.get("./main.html");
+    return {
+    template: a.data,
+    components:{
+        covertitle,
+        badge,
+    },
+    data: function(){
+        return {
+            title: "Tinkerhub@Campus",
+            image: "coverBack.jpg",
+            chapters : 5,
+        }
+    },
+    mounted : function() {
+        try {
+            var rellax=new Rellax('.rellax');
+            }
+        catch(e){
+            console.log(e);
+        }
+        iframes=document.getElementsByClassName('embed-responsive-item');
+        for(i=0;i<iframes.length;i++)
+        {
+            if(iframes[i].src=="")
+            iframes[i].src=iframes[i].dataset["src"];
+        }
+    }
+    }
+});
+
+chapterV=asyncComponentFactory( async function(){
+    a=await axios.get("./Chapters/index.html");
+    return {
+        template: a.data,
+    }
+});
+
+handbookV=asyncComponentFactory( async function() {
+    a=await axios.get("./handbook/index.html");
+    return {
+        template: a.data,
+    }
+});
 //--------------------------
+var router=new VueRouter({
+    routes: [
+        {path:'/',component:mainV},
+        {path:'/chapters',component:chapterV},
+        {path:'/chapters/:id',component:chapterV},
+        {path:'/handbook',component:handbookV},
+    ]
+})
 var vm = new Vue({
     el : "#container",
+    router,
     components : {
         covertitle,
         badge,
         loader,
+        mainV,
     },
     data : {
         title: "Tinkerhub@Campus",
         image: "coverBack.jpg",
         chapters: 5,
         percent: 100,
-        downlink: "/",
-    },
-    methods : {
-        down : function() {
-            link=this.downlink;
-            axios.get(link,{
-                onDownloadProgress: function(progressEvent) {
-                    this.percent = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-                  }
-            });
-        }
     },
     mounted : function(){
         document.getElementById("fullscreen").style.display="none";
     }
 });
-var rellax = new Rellax('.rellax');
-window.onload=function(e){
-    iframes=document.getElementsByClassName('embed-responsive-item');
-    for(i=0;i<iframes.length;i++)
-    {
-        iframes[i].src=iframes[i].dataset["src"];
-    }
-}

@@ -13,8 +13,8 @@
     href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
     /> -->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.7.2/rellax.min.js"></script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.7.2/rellax.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script defer src="https://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.2/vue-router.min.js"></script>
@@ -38,45 +38,18 @@
         <loader :percent="percent"></loader>
             <div>
                 <b-navbar id="navigator" toggleable="lg" type="dark" fixed="top">
-                    <b-navbar-brand href="#">Tinkerhub@Campus</b-navbar-brand>
+                    <b-navbar-brand to="/">Tinkerhub@Campus</b-navbar-brand>
                     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>      
                     <b-collapse is-nav id="nav_collapse">
                     <b-navbar-nav>
-                        <b-nav-item href="#">Chapters</b-nav-item>
-                        <b-nav-item href="#">Handbook</b-nav-item>
+                        <b-nav-item to="/chapters">Chapters</b-nav-item>
+                        <b-nav-item to="/handbook">Handbook</b-nav-item>
                     </b-navbar-nav>
                     </b-collapse>
                 </b-navbar>
             </div>
-        <div style="overflow: hidden;">
-            <covertitle :title="title" :image="image"></covertitle>
-            <b-container class="rellax" data-rellax-speed="-1" style="padding: 10px;overflow: hidden;">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h5 @click="down">Welcome!</h5>
-                        <p class="light">
-                            Tinkerhub Campus Community programs focus on enabling a peer to peer technology learning
-                            culture in campus for generating talents in 21st century technologies.
-                        </p>
-                        <badge label="chapters" :status="chapters" color="success"></badge>
-                    </div>
-                    <div class="col-sm-9 embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item"
-                        width="860"
-                        height="484" 
-                        data-src="https://www.youtube.com/embed/6RdXLvr8R54" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                <div class="row">
-
-                </div>
-            </b-container>
-            
-        </div>
+        <router-view style="overflow: hidden;">
+        </router-view>
     </div>
     <script defer src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
     <script defer src="main.js"></script>
