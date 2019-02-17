@@ -113,9 +113,7 @@ var vm = new Vue({
         }
     },
     mounted : function(){
-        setTimeout(()=>{
         document.getElementById("fullscreen").style.display="none";
-        },2000);
     }
 });
 var rellax = new Rellax('.rellax');
