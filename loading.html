@@ -10,6 +10,7 @@
             height: 50px;
             border-radius: 5px;
             margin-right: 16px;
+            /* transform: skewX(-8deg); */
         }
         div.row {
             display: flex;
@@ -26,9 +27,15 @@
             from {flex: 3;}
             to {flex:9;}
         }
+        @keyframes r2c{
+            0%,50% {flex:0;}
+            75% {flex:12;}
+            100% {flex:0;}
+        }
         @keyframes r2{
-            from {transform: rotateY(0deg);}
-            to {transform: rotateY(180deg);}
+            0% {flex:0;}
+            25% {flex:12;}
+            50%,100% {flex:0;}
         }
         @keyframes r3c3{
             from {flex:8;margin-left:16px;}
@@ -52,12 +59,18 @@
             flex:3;
             " class="box"></div>
         </div>
-        <div class="row" style="
-        background: rgb(255,205,16);
-        margin-right:8px;
-        width: 120px;
-        animation: r2 1s linear 0s infinite alternate;
-        ">
+        <div class="row">
+            <div class="box" style="
+            animation: r2c 2s ease-in-out 0s infinite;
+            margin:0px;
+            opacity:0;"></div>
+            <div class="box" style="
+            background: rgb(255,205,16);
+            flex:5;"></div>
+            <div class="box" style="
+            animation: r2 2s ease-in-out 0s infinite;
+            margin:0px;
+            opacity:0;"></div>
         </div>
         <div class="row">
             <div style="
