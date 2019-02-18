@@ -4,15 +4,15 @@
         "title":"Tinkerhub-RIT",
         "desc":"short",
         "website":"RIT.html",
-        "img":"https://picsum.photos/100/100/?image=25",
+        "img":"https://picsum.photos/300/200/?image=25",
         "lead":"Ebey Abraham"
     },
     {
-        "id":"0",
+        "id":"1",
         "title":"Tinkerhub-RIT",
         "desc":"short",
         "website":"RIT.html",
-        "img":"https://picsum.photos/100/100/?image=25",
+        "img":"https://picsum.photos/300/200/?image=25",
         "lead":"Ebey Abraham"
     }
 ]
