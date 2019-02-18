@@ -113,18 +113,18 @@ LoadingComponent = {
 
 para={
     template:`
-    <div class="row" style="margin-top:64px;">
-        <b-col md="5" v-if="left">
+    <div class="row" style="margin-top:64px;margin-bottom:16px;">
+        <b-col md="5" v-if="(left&&image)">
             <b-card-img :src="image" class="rounded-0" />
         </b-col>
-        <b-col md="7">
+        <b-col :md="(image)?7:12">
             <b-card-body :title="title">
             <b-card-text>
             <slot></slot>
             </b-card-text>
             </b-card-body>
         </b-col>
-        <b-col md="5" v-if="!left">
+        <b-col md="5" v-if="(!left&&image)">
             <b-card-img :src="image" class="rounded-0" />
         </b-col>
     </div>`,
