@@ -119,7 +119,8 @@ para={
         </b-col>
         <b-col md="7">
             <b-card-body :title="title">
-            <b-card-text v-html="content">
+            <b-card-text>
+            <slot></slot>
             </b-card-text>
             </b-card-body>
         </b-col>
@@ -167,9 +168,6 @@ mainV = asyncComponentFactory( async function(){
             if(iframes[i].src=="")
             iframes[i].src=iframes[i].dataset["src"];
         }
-        iframes[iframes.length-1].onload=function(){
-            document.getElementById("fullscreen").style.display="none";
-        }
 
     }
     }
@@ -179,14 +177,23 @@ chapterV=asyncComponentFactory( async function(){
     a=await axios.get("./Chapters/index.html");
     return {
         template: a.data,
-    }
+        components : {
+            covertitle,
+            para,
+        },
+    };
+    
 });
 
 handbookV=asyncComponentFactory( async function() {
     a=await axios.get("./handbook/index.html");
     return {
         template: a.data,
-    }
+        components : {
+            covertitle,
+            para,
+        },
+    };
 });
 //--------------------------
 var router=new VueRouter({
@@ -213,3 +220,6 @@ var vm = new Vue({
         percent: 100,
     },
 });
+window.onload=function(){
+    document.getElementById("fullscreen").style.display="none";
+}
