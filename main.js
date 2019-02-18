@@ -3,16 +3,11 @@
 covertitle= {
     template:`
     <div class="covertitle">
-        <img data-depth="0.0" :src="image">
-        <h1 data-depth="0.6">{{title}}</h1>
+        <img :src="image">
+        <h1>{{title}}</h1>
     </div>
     `,
     props:['image','title'],
-    mounted : function(){
-        a=document.getElementsByClassName("covertitle");
-        a=a[a.length-1];
-        var parallaxi=new Parallax(a);
-    }
 };
 
 badge= {
@@ -128,7 +123,37 @@ para={
             <b-card-img :src="image" class="rounded-0" />
         </b-col>
     </div>`,
-    props : ["title","content","left","image"],
+    props : ["title","left","image"],
+}
+accordion={
+    template:`
+    <div>
+        <div class="row">
+        <b-button variant="success" class="col-sm-12" @click="toggle=!toggle" :aria-controls="id" :aria-expanded="toggle ? 'true' : 'false'">{{title}}</b-button>
+        </div>
+        <div class="row">
+                <b-collapse :id="id" v-model="toggle">
+                <b-container>
+                    <b-row>
+                        <b-col md="5" v-if="(left&&image)">
+                            <b-card-img :src="image" class="rounded-0" />
+                        </b-col>
+                        <b-col :md="(image)?7:12">
+                            <b-card-body :title="title">
+                            <b-card-text>
+                            <slot></slot>
+                            </b-card-text>
+                            </b-card-body>
+                        </b-col>
+                        <b-col md="5" v-if="(!left&&image)">
+                            <b-card-img :src="image" class="rounded-0" />
+                        </b-col>
+                    </b-row>
+                </b-container>
+                </b-collapse>
+        </div>
+    </div>`,
+    props:["id","toggle",'title','left','image'],
 }
 function asyncComponentFactory(p){
     return p;
@@ -192,6 +217,7 @@ handbookV=asyncComponentFactory( async function() {
         components : {
             covertitle,
             para,
+            accordion,
         },
     };
 });
