@@ -25,13 +25,14 @@
     z-index: 5000;
     position: fixed;
     background: #292b2c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
     ">
     <!-- <div id="load" style="height:20vw;width:20vw;background: blue;animation: loading 1s ease 0s infinite alternate;"></div> -->
-    <iframe height='180' width='160' frameborder='0' style="overflow: hidden;" src="loading.html"></iframe>
+    <iframe height='180'
+     width='160'
+    frameborder='0' 
+    style="overflow: hidden;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);" 
+    src="loading.html"></iframe>
     </div>
     <div id="container">
         <loader :percent="percent"></loader>

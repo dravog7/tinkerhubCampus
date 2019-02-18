@@ -52,7 +52,7 @@ loader = {
             left:0;
             width:100%;
             height:1%;
-            z-index:2000;
+            z-index:6000;
             border-radius:0;
             "class="mt-2" :max="max">
         <b-progress-bar :value="extendarray[0]" variant="success" />
@@ -95,16 +95,10 @@ loader = {
     }
 };
 
-LoadingComponent = {
-    //place holder component for activating loading gif
-    template:"<h1>Loading</h1>",
-    beforeCreate:function(){
+function displayLoader(){
+    if(!window.done)
         document.getElementById("fullscreen").style.display="block";
-    },
-    beforeDestroy:function(){
-        document.getElementById("fullscreen").style.display="none";
-    }
-};
+}
 
 para={
     template:`
@@ -216,7 +210,14 @@ function asyncComponentFactory(p){
 };
 // The index page
 mainV = asyncComponentFactory( async function(){
-    a=await axios.get("./main.html");
+    try {vm.percent=0;}catch(e){;}
+    window.done=false;
+    setTimeout(displayLoader(),200);
+    a=await axios.get("./main.html",{
+        onDownloadProgress(e){
+            vm.percent=(e.loaded/e.total)*100;
+        }
+    });
     return {
     template: a.data,
     components:{
@@ -237,14 +238,26 @@ mainV = asyncComponentFactory( async function(){
             if(iframes[i].src=="")
             iframes[i].src=iframes[i].dataset["src"];
         }
-
+        window.done=true;
+        document.getElementById("fullscreen").style.display="none";
     }
     }
 });
 
 chapterV=asyncComponentFactory( async function(){
-    a=await axios.get("./Chapters/index.html");
-    chapters=await axios.get('./Chapters/chapters.json');
+    try {vm.percent=0;}catch(e){;}
+    window.done=false;
+    setTimeout(displayLoader(),200);
+    a=await axios.get("./Chapters/index.html",{
+        onDownloadProgress(e){
+            vm.percent=(e.loaded/e.total)*50;
+        }
+    });
+    chapters=await axios.get('./Chapters/chapters.json',{
+        onDownloadProgress(e){
+            vm.percent=50+(e.loaded/e.total)*50;
+        }
+    });
     return {
         template: a.data,
         components : {
@@ -258,12 +271,25 @@ chapterV=asyncComponentFactory( async function(){
                 'chapters':chapters.data,
             }
         },
+        mounted() {
+            window.done=true;
+            document.getElementById("fullscreen").style.display="none";
+        }
     };
     
 });
 
 handbookV=asyncComponentFactory( async function() {
-    a=await axios.get("./handbook/index.html");
+    try {vm.percent=0;}catch(e){;}
+        
+    window.done=false;
+    setTimeout(displayLoader(),200);
+    a=await axios.get("./handbook/index.html",{
+        onDownloadProgress(e){
+            vm.percent=(e.loaded/e.total)*100;
+        }
+    });
+    
     return {
         template: a.data,
         components : {
@@ -271,6 +297,10 @@ handbookV=asyncComponentFactory( async function() {
             para,
             accordion,
         },
+        mounted() {
+            window.done=true;
+            document.getElementById("fullscreen").style.display="none";
+        }
     };
 });
 //--------------------------
