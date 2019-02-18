@@ -3,7 +3,7 @@
 covertitle= {
     template:`
     <div class="covertitle">
-        <img data-depth="0.2" :src="image">
+        <img data-depth="0.0" :src="image">
         <h1 data-depth="0.6">{{title}}</h1>
     </div>
     `,
