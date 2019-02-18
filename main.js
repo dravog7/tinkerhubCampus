@@ -3,11 +3,16 @@
 covertitle= {
     template:`
     <div class="covertitle">
-        <img class="rellax" :src="image">
-        <h1 class="rellax" data-rellax-speed="7" >{{title}}</h1>
+        <img data-depth="0.2" :src="image">
+        <h1 data-depth="0.6">{{title}}</h1>
     </div>
     `,
     props:['image','title'],
+    mounted : function(){
+        a=document.getElementsByClassName("covertitle");
+        a=a[a.length-1];
+        var parallaxi=new Parallax(a);
+    }
 };
 
 badge= {
@@ -17,14 +22,21 @@ badge= {
     // `,
 
     //using bootstrap
-    template : `
-        <div class="text-center" style="margin: 2px;">
-            <b-button :to="to" :variant="color">
-            {{label}}
-                <b-badge pill variant="light">{{status}}</b-badge>
-            </b-button>
-        </div>
-    `, 
+    // template : `
+    //     <div class="text-center" style="margin: 2px;">
+    //         <b-button :to="to" :variant="color">
+    //         {{label}}
+    //             <b-badge pill variant="light">{{status}}</b-badge>
+    //         </b-button>
+    //     </div>
+    // `,
+    template:`
+    <div>
+    <span class="light" style="font-size:200%;">{{label}}</span>
+    <b-badge variant="light" style="font-size:200%">{{Math.floor(Number(status)/10)}}</b-badge>
+    <b-badge variant="light" style="font-size:200%">{{Number(status)%10}}</b-badge>
+    </div>
+    ` ,
     props: ["label","status","color","to"],
     computed : {
         address : function () {
@@ -99,7 +111,25 @@ LoadingComponent = {
     }
 };
 
-
+para={
+    template:`
+    <div class="row" style="margin-top:64px;">
+        <b-col md="5" v-if="left">
+            <b-card-img :src="image" class="rounded-0" />
+        </b-col>
+        <b-col md="7">
+            <b-card-body :title="title">
+            <b-card-text>
+            <slot></slot>
+            </b-card-text>
+            </b-card-body>
+        </b-col>
+        <b-col md="5" v-if="!left">
+            <b-card-img :src="image" class="rounded-0" />
+        </b-col>
+    </div>`,
+    props : ["title","content","left","image"],
+}
 function asyncComponentFactory(p){
     return p;
 //     return {
@@ -123,29 +153,20 @@ mainV = asyncComponentFactory( async function(){
     components:{
         covertitle,
         badge,
+        para,
     },
     data: function(){
         return {
             title: "Tinkerhub@Campus",
             image: "coverBack.jpg",
-            chapters : 5,
         }
     },
     mounted : function() {
-        try {
-            var rellax=new Rellax('.rellax');
-            }
-        catch(e){
-            console.log(e);
-        }
         iframes=document.getElementsByClassName('embed-responsive-item');
         for(i=0;i<iframes.length;i++)
         {
             if(iframes[i].src=="")
             iframes[i].src=iframes[i].dataset["src"];
-        }
-        iframes[iframes.length-1].onload=function(){
-            document.getElementById("fullscreen").style.display="none";
         }
 
     }
@@ -156,14 +177,23 @@ chapterV=asyncComponentFactory( async function(){
     a=await axios.get("./Chapters/index.html");
     return {
         template: a.data,
-    }
+        components : {
+            covertitle,
+            para,
+        },
+    };
+    
 });
 
 handbookV=asyncComponentFactory( async function() {
     a=await axios.get("./handbook/index.html");
     return {
         template: a.data,
-    }
+        components : {
+            covertitle,
+            para,
+        },
+    };
 });
 //--------------------------
 var router=new VueRouter({
@@ -190,3 +220,6 @@ var vm = new Vue({
         percent: 100,
     },
 });
+window.onload=function(){
+    document.getElementById("fullscreen").style.display="none";
+}
