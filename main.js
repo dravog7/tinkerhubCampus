@@ -170,17 +170,13 @@ accordion={
 
 chaptercards={
     template:`
-    <b-row style="margin:16px;">
+    <b-row style="margin-top:16px;margin-bottom:16px;">
         <router-link class="col-md-12" :to="(website)?('/chapters/'+website):'/chapters/'">
             <b-col md="12">
-                <b-card :img-src="(img)" :img-alt="imgalt" style="color:black;border-radius: 8px;" :title="title" img-right>
+                <b-card :img-src="(img)" :img-alt="imgalt" style="color:black;border-radius: 8px;box-shadow:0px 0px 15px 2px #ccc;" :title="title" img-right>
                     <b-card-body>
                         {{desc}}
                     </b-card-body>
-                    <p slot="header">
-                    <br>
-                    Lead Name: {{lead}}
-                    </p>
                 </b-card>
             </b-col>
         </router-link>
