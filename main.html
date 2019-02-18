@@ -1,28 +1,46 @@
 <div>
-        <covertitle :title="title" :image="image"></covertitle>
-            <b-container class="rellax" data-rellax-speed="-1" style="padding: 10px;overflow: hidden;">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h5>Welcome!</h5>
-                        <p class="light">
-                            Tinkerhub Campus Community programs focus on enabling a peer to peer technology learning
-                            culture in campus for generating talents in 21st century technologies.
-                        </p>
-                        <badge to="/chapters" label="chapters" :status="chapters" color="success"></badge>
-                    </div>
-                    <div class="col-sm-9 embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item"
-                        width="860"
-                        height="484" 
-                        data-src="https://www.youtube.com/embed/6RdXLvr8R54" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                        </iframe>
-                    </div>
+    <covertitle :title="title" :image="image"></covertitle>
+    <b-container style="padding: 10px;overflow: hidden;">
+        <div class="row">
+            <div class="col-sm-3">
+                <h5>Welcome!</h5>
+                <p class="light">
+                    Tinkerhub Campus Community programs focus on enabling a peer to peer technology learning
+                    culture in campus for generating talents in 21st century technologies.
+                </p>
+                <!-- <badge to="/chapters" label="chapters" :status="chapters" color="success"></badge> -->
+            </div>
+                <div class="col-sm-9 embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                    width="860"
+                    height="484" 
+                    data-src="https://www.youtube.com/embed/6RdXLvr8R54"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
                 </div>
-                <div class="row">
-
-                </div>
-            </b-container>
-        </div> 
+        </div>
+    </b-container>
+    <b-container>
+        <b-row style="align-items: center;justify-content: center;margin-top:32px;">
+            <h2>Build Your Tinkerhub Chapter!</h2>
+        </b-row>
+        <para title="Register and Create Logo"
+        content="Lets get started by registering!"
+        left="true"
+        image="https://picsum.photos/400/400/?image=20"
+        ></para>
+        <para title="Get the handbook"
+        content="we curated a handbook for you to get started with Tinkerhub community activities. Download it here!
+        suggestions about handbook are welcome.<button class='btn btn-info'>handbook</button>"
+        image="https://picsum.photos/400/400/?image=20"
+        ></para>
+        <para title="Lead"
+        content="Now go lead! Create an awesome community in your campus. We are eagerly waiting to hear your leadership 
+        stories. Happy Learning!"
+        left="true"
+        image="https://picsum.photos/400/400/?image=20"
+        ></para>
+    </b-container>
+</div> 

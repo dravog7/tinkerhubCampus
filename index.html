@@ -13,7 +13,7 @@
     href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
     /> -->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.7.2/rellax.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script defer src="https://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -44,6 +44,9 @@
                     <b-navbar-nav>
                         <b-nav-item to="/chapters">Chapters</b-nav-item>
                         <b-nav-item to="/handbook">Handbook</b-nav-item>
+                    </b-navbar-nav>
+                    <b-navbar-nav class='ml-auto'>
+                        <b-nav-item to='/chapters'><badge to="/chapters" label="chapters" :status="chapters" color="info"></badge></b-nav-item>
                     </b-navbar-nav>
                     </b-collapse>
                 </b-navbar>
