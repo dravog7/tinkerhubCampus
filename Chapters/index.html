@@ -1,3 +1,24 @@
 <div>
-    <covertitle title="Chapters" image="coverBack.jpg"></covertitle>
+    <div v-if="$route.params.id">
+        <chapterP :who="$route.params.id"></chapterP>
+    </div>
+    <div v-else>
+        <covertitle title="Our Chapters" image="coverBack.jpg"></covertitle>
+        <b-container style="margin-bottom:16px;align-items: center;justify-content: center;">
+            <b-row style="align-items: center;justify-content: center;">
+                <h1>List Of Chapters</h1>
+            </b-row>
+            <b-container style="background:#ccc;padding:16px;box-shadow:inset 0px 0px 20px 2px #797979;border-radius: 8px;">
+                <chaptercards v-for="chapter in chapters" 
+                :key="chapter.id"
+                :title="chapter.title" 
+                :desc="chapter.desc" 
+                :website="chapter.website" 
+                :img="chapter.img" 
+                :img-alt="chapter.imgalt" 
+                :lead="chapter.lead">
+                </chaptercards>
+            </b-container>
+        </b-container>
+    </div>
 </div>

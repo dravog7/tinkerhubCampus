@@ -9,6 +9,9 @@
     animation: fadeout 0.5s ease;
 }
 
+a:hover {
+    text-decoration: none!important;
+}
 #navigator:hover {
     opacity: 1;
     animation: fadein 0.5s ease;

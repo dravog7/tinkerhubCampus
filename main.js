@@ -129,10 +129,17 @@ accordion={
     template:`
     <div>
         <div class="row">
-        <b-button variant="success" class="col-sm-12" @click="toggle=!toggle" :aria-controls="id" :aria-expanded="toggle ? 'true' : 'false'">{{title}}</b-button>
+        <b-button style='border-radius:0px;'
+        variant="success" 
+        class="col-sm-12" 
+        @click="toggle=!toggle" 
+        :aria-expanded="toggle ? 'true' : 'false'"
+        >
+        {{title}}
+        </b-button>
         </div>
         <div class="row">
-                <b-collapse :id="id" v-model="toggle">
+                <b-collapse :id='id' v-model="toggle">
                 <b-container>
                     <b-row>
                         <b-col md="5" v-if="(left&&image)">
@@ -153,7 +160,45 @@ accordion={
                 </b-collapse>
         </div>
     </div>`,
-    props:["id","toggle",'title','left','image'],
+    props:['id','title','left','image'],
+    data(){
+        return {
+            toggle:false,
+        }
+    }
+}
+
+chaptercards={
+    template:`
+    <b-row style="margin:16px;">
+        <router-link class="col-md-12" :to="(website)?('/chapters/'+website):'/chapters/'">
+            <b-col md="12">
+                <b-card :img-src="(img)" :img-alt="imgalt" style="color:black;border-radius: 8px;" :title="title" img-right>
+                    <b-card-body>
+                        {{desc}}
+                    </b-card-body>
+                    <p slot="header">
+                    <br>
+                    Lead Name: {{lead}}
+                    </p>
+                </b-card>
+            </b-col>
+        </router-link>
+    </b-row>`,
+    props:['title','desc','website','img','imgalt','lead']
+}
+
+chapterP=async function(){
+    id=vm.$route.params.id;
+    a=await axios.get("./Chapters/"+id);
+    return {
+        template:a.data,
+        components:{
+            covertitle,
+            para,
+        },
+        props:['who'],
+    }
 }
 function asyncComponentFactory(p){
     return p;
@@ -200,11 +245,19 @@ mainV = asyncComponentFactory( async function(){
 
 chapterV=asyncComponentFactory( async function(){
     a=await axios.get("./Chapters/index.html");
+    chapters=await axios.get('./Chapters/chapters.json');
     return {
         template: a.data,
         components : {
             covertitle,
             para,
+            chaptercards,
+            chapterP,
+        },
+        data : function(){
+            return {
+                'chapters':chapters.data,
+            }
         },
     };
     
@@ -242,7 +295,7 @@ var vm = new Vue({
     data : {
         title: "Tinkerhub@Campus",
         image: "coverBack.jpg",
-        chapters: 5,
+        chapters: 2,
         percent: 100,
     },
 });
