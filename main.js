@@ -140,7 +140,7 @@ accordion={
                             <b-card-img :src="image" class="rounded-0" />
                         </b-col>
                         <b-col :md="(image)?7:12">
-                            <b-card-body :title="title">
+                            <b-card-body>
                             <b-card-text>
                             <slot></slot>
                             </b-card-text>
@@ -310,7 +310,14 @@ var router=new VueRouter({
         {path:'/chapters',component:chapterV},
         {path:'/chapters/:id',component:chapterV},
         {path:'/handbook',component:handbookV},
-    ]
+    ],
+    scrollBehavior (to, from, savedPosition) {
+        if (savedPosition) {
+          return savedPosition
+        } else {
+          return { x: 0, y: 0 }
+        }
+      }
 })
 var vm = new Vue({
     el : "#container",
