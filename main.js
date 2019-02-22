@@ -166,10 +166,11 @@ chaptercards={
     template:`
     <b-row style="margin:16px;">
         <router-link class="col-md-12" style="width:auto;padding-left:0px;padding-right:0px;":to="(website)?('/chapters/'+website):'/chapters/'">
-        <b-container style="color:black;border-radius: 8px;box-shadow:0px 0px 15px 2px #ccc;" >
+        <b-container style="color:black;border-radius: 8px;box-shadow:0px 0px 15px 2px #ccc;padding:0px;" >
             <b-row style="margin:0px;">
-                <img class="col-md-5" :src="img" style="border-radius:8px;margin-top:8px;margin-bottom:8px;">
-                <b-col md="7">
+                <img class="col-md-3" :src="img" style="border-radius:8px;padding:0px;">
+                <b-col md='1'></b-col>
+                <b-col md="8">
                     <h2>{{title}}</h2>
                     <p>{{desc}}</p>
                     
